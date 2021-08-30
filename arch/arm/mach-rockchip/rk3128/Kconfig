@@ -11,6 +11,26 @@ config TARGET_EVB_RK3128
 	  with full function and phisical connectors support like
 	  usb2.0 host ports, LVDS, JTAG, MAC, SDcard, HDMI, USB-2-serial...
 
+config TARGET_WX8_RK3128
+	bool "RK3128 WX8 board"
+	select BOARD_LATE_INIT
+	help
+	  WX8 board is used in handhelds with Rockchip rk3128.
+	  WX8 is used in PS5000, PowKiddy X20...
+	  WX8 board:
+		- Rockchip rk3128
+		- 512 MB DDR3 RAM shared with GPU
+		- battery power management
+			- charge over USB
+			- DC/DC - 5V USB (usb host), variable CPU and GPU (driven by CPU PWM), 3.3V
+		- MIPI DSI display
+		- HDMI output
+		- SD card
+		- SPI NAND (RKSFC)
+		- USB OTG an USB HOST
+		- stereo audio aplifier
+		- game buttons and joysticks
+
 endchoice
 
 config SYS_SOC
@@ -20,5 +40,6 @@ config SYS_MALLOC_F_LEN
 	default 0x0800
 
 source "board/rockchip/evb_rk3128/Kconfig"
+source "board/rockchip/wx8_rk3128/Kconfig"
 
 endif

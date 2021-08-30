@@ -1,0 +1,6 @@
+WX8-RK3128
+S:      not-maintained WIP
+F:      board/rockchip/wx8_rk3128
+F:      include/configs/wx8_rk3128.h
+F:      configs/wx8-rk3128_defconfig
+F:	arch/arm/dts/rk3128-wx8.dts

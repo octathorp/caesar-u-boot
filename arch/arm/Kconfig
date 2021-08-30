@@ -1153,6 +1153,8 @@ config ARCH_ROCKCHIP
 	select SPI
 	select DEBUG_UART_BOARD_INIT
 	select PANIC_HANG
+	select ARCH_SUPPORT_PSCI
+	select CPU_V7_HAS_NONSEC
 	imply DM_MMC
 	imply DM_I2C
 	imply DM_PWM
