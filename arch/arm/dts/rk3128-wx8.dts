@@ -21,6 +21,14 @@
 		reg = <0x60000000 0x40000000>;
 	};
 
+	config {
+		pinctrl-names = "default";
+		pinctrl-0 = <&select_key &pm_enable>;
+
+		download,gpio = <&gpio3 RK_PC6 GPIO_ACTIVE_HIGH>;
+		pm-enable,gpio = <&gpio2 RK_PD5 GPIO_ACTIVE_HIGH>;
+	};
+
 	vcc_io: vcc-io {
 		compatible = "regulator-fixed";
 		regulator-name = "vcc_io";
@@ -197,8 +205,8 @@
 
 	route {
 		route_dsi: route-dsi {
-			logo,uboot = "logo.bmp";
-			logo,kernel = "logo.bmp";
+			logo,uboot = "logo_uboot.bmp";
+			logo,kernel = "logo_kernel.bmp";
 			logo,mode = "fullscreen";
 			charge_logo,mode = "center";
 			connect = <&vop_out_dsi>;
@@ -217,13 +225,12 @@
 		power-supply = <&vcc_lcd>;
 		backlight = <&backlight>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&lcd_reset &lcd_enable &lcd_boosten>;
-		dsi,flags = <(MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_EOT_PACKET | MIPI_DSI_MODE_VIDEO_BURST | MIPI_DSI_MODE_VIDEO)>; // 0xa03
+		pinctrl-0 = <&lcd_reset &lcd_enable>;
+		dsi,flags = <(MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_EOT_PACKET | MIPI_DSI_MODE_VIDEO_BURST | MIPI_DSI_MODE_VIDEO)>;
 		dsi,format = <MIPI_DSI_FMT_RGB888>;
 		dsi,lanes = <2>;
 		reset-gpios = <&gpio0 RK_PD0 GPIO_ACTIVE_LOW>;
 		enable-gpios = <&gpio1 RK_PB4 GPIO_ACTIVE_LOW>;
-		//boosten-gpios = <&gpio2 0x1d 0x00>;
 		reset-delay-ms = <10>;
 		enable-delay-ms = <100>;
 		prepare-delay-ms = <10>;
@@ -273,7 +280,7 @@
 
 &video_phy {
 	status = "okay";
-	inno,lanes = <2>;
+	//inno,lanes = <2>;
 };
 
 &pwm0 {
@@ -318,7 +325,11 @@
 		rockchip,pins = <RK_GPIO0 RK_PD0 RK_FUNC_0 &pcfg_pull_none>;
 	};
 
-	lcd_boosten: lcd-boosten {
-		rockchip,pins = <RK_GPIO2 RK_PD5 RK_FUNC_0 &pcfg_pull_none>;
+	select_key: select-key {
+		rockchip,pins = <RK_GPIO3 RK_PC6 RK_FUNC_0 &pcfg_pull_default>;
+	};
+
+	pm_enable: pm-enable {
+		rockchip,pins = <RK_GPIO2 RK_PD5 RK_FUNC_0 &pcfg_pull_default>;
 	};
 };
