@@ -130,12 +130,13 @@
 		status = "disabled";
 
 		ports {
-			port {
-				#address-cells = <1>;
-				#size-cells = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
 
-				lvds_in_vop: endpoint@0 {
-					reg = <0>;
+			port@0 {
+				reg = <0>;
+
+				lvds_in_vop: endpoint {
 					remote-endpoint = <&vop_out_lvds>;
 				};
 			};
@@ -157,12 +158,13 @@
 		status = "disabled";
 
 		ports {
-			port {
-				#address-cells = <1>;
-				#size-cells = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
 
-				rgb_in_vop: endpoint@0 {
-					reg = <0>;
+			port@0 {
+				reg = <0>;
+
+				rgb_in_vop: endpoint {
 					remote-endpoint = <&vop_out_rgb>;
 				};
 			};
@@ -276,11 +278,7 @@
 
 		ports {
 			port {
-				#address-cells = <1>;
-				#size-cells = <0>;
-
-				dsi_in_vop: endpoint@0 {
-					reg = <0>;
+				dsi_in_vop: endpoint {
 					remote-endpoint = <&vop_out_dsi>;
 				};
 			};
